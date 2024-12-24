@@ -93,14 +93,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Setup NodeJS
         uses: actions/setup-node@v4
 
       - name: Get Version
         run: |
+          git clone https://github.com/cross-rs/cross
+
+          cd cross
+          git submodule update --init --remote
+          cd ..
+
           node ver.js
         env:
           NIGHTLY: ${{ github.event_name == 'push' }}
