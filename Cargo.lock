@@ -14,7 +14,7 @@ dependencies = [
 [[package]]
 name = "lead_lang_interpreter"
 version = "0.0.0-dev-lead-lang"
-source = "git+https://github.com/leadlang/lead#1b9fc5ca63d5261991e65486b22f0d2334546e17"
+source = "git+https://github.com/leadlang/lead#825264adfcf84c4a76961c9b13cf87d83e282e9e"
 dependencies = [
  "chalk_rs",
 ]
