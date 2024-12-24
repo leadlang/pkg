@@ -1,5 +1,12 @@
 $target = $env:BUILD_TARGET
 
+try {
+  rustup target add $target  
+}
+catch {
+  "Continuing without installing $target"
+}
+
 if ($env:NO_CROSS -eq "true") {
   cross build --release --target $target
   cross run --release --target $target

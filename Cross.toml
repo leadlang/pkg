@@ -1,0 +1,11 @@
+[build]
+build-std = true
+
+[target.aarch64-pc-windows-msvc]
+dockerfile = "./toolchains/docker/Dockerfile.aarch64-pc-windows-msvc-cross"
+
+[target.x86_64-apple-darwin]
+dockerfile = "./toolchains/docker/Dockerfile.x86_64-apple-darwin-cross"
+
+[target.aarch64-apple-darwin]
+dockerfile = "./toolchains/docker/Dockerfile.aarch64-apple-darwin-cross"
