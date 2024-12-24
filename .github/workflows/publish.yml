@@ -132,9 +132,11 @@ jobs:
           $RUSTFLAGS = ""
           cargo install cross --path cross
 
-          cd cross
-          cargo build-docker-image ${{ matrix.target }} --tag local
-          cd ..
+          if ($env:BUILD_TARGET.Contains("-cross")) {
+            cd cross
+            cargo build-docker-image ${{ matrix.target }} --tag local
+            cd ..
+          }
 
           ./setup
           ./build
