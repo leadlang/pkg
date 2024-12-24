@@ -101,7 +101,9 @@ jobs:
       - name: Build for target
         shell: pwsh
         run: |
-          RUSTFLAGS="" cargo install cross --git https://github.com/cross-rs/cross
+          $env:RUSTFLAGS = ""
+          $RUSTFLAGS = ""
+          cargo install cross --git https://github.com/cross-rs/cross
           ./setup
           ./build
         env:
