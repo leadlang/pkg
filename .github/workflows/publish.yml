@@ -142,7 +142,7 @@ jobs:
 
           if ($env:OS -ne "Linux") {
             "Not using cross"
-            $env:NO_CROSS = "false"
+            $env:NO_CROSS = "true"
           }
 
           if ($env:BUILD_TARGET.Contains("-cross")) {
