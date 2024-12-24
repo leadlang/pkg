@@ -140,6 +140,10 @@ jobs:
           $RUSTFLAGS = ""
           cargo install cross --path cross
 
+          if ($env:OS -ne "Linux") {
+            $env:NO_CROSS = "false"
+          }
+
           if ($env:BUILD_TARGET.Contains("-cross")) {
             cd cross
             cargo build-docker-image ${{ matrix.target }} --tag local
@@ -150,6 +154,7 @@ jobs:
           ./build
         env:
           BUILD_TARGET: ${{ matrix.target }}
+          OS: ${{ runner.os }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
