@@ -14,12 +14,8 @@ if ($env:NO_CROSS -eq "true") {
 
   cargo build --release --target $target
   
-  try {
-    cargo run --release --target $target
-  }
-  catch {
-    cargo run --release
-  }
+  cargo run --release
+  cargo run --release --target $target
 }
 else {
   "Using cross"
