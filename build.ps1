@@ -9,13 +9,17 @@ catch {
   "Continuing without installing $target"
 }
 
-if ($env:NO_CROSS -ne "true") {
-  cross build --release --target $target_to_use
-  cross run --release --target $target_to_use
-}
-else {
+if ($env:NO_CROSS -eq "true") {
+  "Using cargo"
+
   cargo build --release --target $target
   cargo run --release --target $target
+}
+else {
+  "Using cross"
+
+  cross build --release --target $target_to_use
+  cross run --release --target $target_to_use
 }
 
 Remove-Item -Recurse -Force build -ErrorAction SilentlyContinue
