@@ -81,13 +81,12 @@ jobs:
           node ver.js
         env:
           NIGHTLY: ${{ github.event_name == 'push' }}
-          LEAD_VER: ${{ needs.tag.outputs.tag }}
+          VERSION: ${{ needs.tag.outputs.tag }}
 
       - name: Install Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: nightly
-          target: ${{ matrix.target }}
           components: rust-src
 
       - name: Install Deps
@@ -102,6 +101,7 @@ jobs:
       - name: Build for target
         shell: pwsh
         run: |
+          RUSTFLAGS="" cargo install cross --git https://github.com/cross-rs/cross
           ./setup
           ./build
         env:

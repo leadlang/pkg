@@ -1,6 +1,6 @@
 $target = $env:BUILD_TARGET
 
-if ($env:CROSS) {
+if ($env:NO_CROSS -eq "true") {
   cross build --release --target $target
   cross run --release --target $target
 }
