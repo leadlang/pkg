@@ -1,0 +1,8 @@
+{
+  "name": "pkg",
+  "version": "1.0.0",
+  "description": "A Sample Package",
+  "authors": ["LeadLang"],
+  "keywords": [],
+  "platforms": ["x86_64-pc-windows-msvc"]
+}

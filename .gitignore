@@ -1,0 +1,5 @@
+/target
+/build
+/dist
+/docs
+/*.zip

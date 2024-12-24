@@ -1,0 +1,16 @@
+[package]
+name = "package"
+description = "A custom made package"
+version = "0.1.0"
+edition = "2021"
+keywords = ["test", "and"]
+
+[lib]
+name = "pkg"
+crate-type = ["rlib", "cdylib"]
+
+[[bin]]
+name = "package"
+
+[dependencies]
+lead_lang_interpreter = { git = "https://github.com/leadlang/lead" }
