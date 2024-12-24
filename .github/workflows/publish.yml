@@ -141,6 +141,7 @@ jobs:
           cargo install cross --path cross
 
           if ($env:OS -ne "Linux") {
+            "Not using cross"
             $env:NO_CROSS = "false"
           }
 
