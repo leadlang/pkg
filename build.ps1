@@ -9,7 +9,7 @@ else {
   cargo run --release --target $target
 }
 
-Remove-Item -Recurse -Force build
+Remove-Item -Recurse -Force build -ErrorAction SilentlyContinue
 Remove-Item "$target.zip" -ErrorAction SilentlyContinue
 
 New-Item build -ItemType Directory

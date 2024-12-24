@@ -112,3 +112,25 @@ jobs:
         with:
           name: ${{ matrix.target }}
           path: ${{ matrix.target }}.zip
+
+  build_leadpkg:
+    name: Build Leadpkg
+
+    runs-on: ubuntu-24.04
+
+    needs: publish
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Build package
+        shell: pwsh
+        run: |
+          ./setup
+          ./finalize
