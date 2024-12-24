@@ -21,6 +21,8 @@ else {
   "Using cross"
 
   cross build --release --target $target_to_use
+  
+  cargo run --release
   cross run --release --target $target_to_use
 }
 
