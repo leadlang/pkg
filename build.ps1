@@ -7,7 +7,7 @@ catch {
   "Continuing without installing $target"
 }
 
-if ($env:NO_CROSS -eq "true") {
+if ($env:NO_CROSS -ne "true") {
   cross build --release --target $target
   cross run --release --target $target
 }
