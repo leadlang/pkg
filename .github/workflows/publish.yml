@@ -48,13 +48,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: x86_64-pc-windows-msvc
+          - target: x86_64-pc-windows-msvc-cross
             runner: windows-latest
 
-          - target: i686-pc-windows-msvc
+          - target: i686-pc-windows-msvc-cross
             runner: windows-latest
 
-          - target: aarch64-pc-windows-msvc
+          - target: aarch64-pc-windows-msvc-cross
             runner: windows-latest
 
           - target: x86_64-unknown-linux-gnu
@@ -69,10 +69,10 @@ jobs:
           - target: armv7-unknown-linux-gnueabi
             runner: ubuntu-24.04
 
-          - target: x86_64-apple-darwin
+          - target: x86_64-apple-darwin-cross
             runner: ubuntu-24.04
 
-          - target: aarch64-apple-darwin
+          - target: aarch64-apple-darwin-cross
             runner: ubuntu-24.04
 
           - target: x86_64-unknown-freebsd

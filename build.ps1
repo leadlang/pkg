@@ -1,4 +1,6 @@
-$target = $env:BUILD_TARGET
+$target_to_use = $env:BUILD_TARGET
+
+$target = $($target_to_use.Replace("-cross", ""))
 
 try {
   rustup target add $target  
@@ -8,8 +10,8 @@ catch {
 }
 
 if ($env:NO_CROSS -ne "true") {
-  cross build --release --target $target
-  cross run --release --target $target
+  cross build --release --target $target_to_use
+  cross run --release --target $target_to_use
 }
 else {
   cargo build --release --target $target
@@ -20,6 +22,11 @@ Remove-Item -Recurse -Force build -ErrorAction SilentlyContinue
 Remove-Item "$target.zip" -ErrorAction SilentlyContinue
 
 New-Item build -ItemType Directory
+
+if (!(Test-Path -Path docs)) {
+  mkdir docs
+}
+
 Copy-Item -Path docs -Destination build -Recurse
 
 Copy-Item -Path ".\target\$target\release\*.dll*" -Destination ".\build" -Recurse -ErrorAction SilentlyContinue
