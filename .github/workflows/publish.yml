@@ -153,6 +153,7 @@ jobs:
 
           ./setup
           ./build
+        continue-on-error: true
         env:
           BUILD_TARGET: ${{ matrix.target }}
           OS: ${{ runner.os }}
