@@ -39,6 +39,8 @@ jobs:
         with:
           tag_name: ${{ steps.ver.outputs.TAG_NAME }}
           prerelease: ${{ github.event_name == 'push' }}
+          release_name: Lead Package ${{ steps.ver.outputs.TAG_NAME }}
+          generate_release_notes: true
           draft: true
 
   publish:
