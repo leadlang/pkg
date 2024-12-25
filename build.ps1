@@ -2,8 +2,6 @@ $target_to_use = $env:BUILD_TARGET
 
 $target = $($target_to_use.Replace("-cross", ""))
 
-$host_target = (rustc -vV | findstr "host: ").Replace("host: ", "")
-
 try {
   rustup target add $target  
 }
@@ -16,7 +14,6 @@ if ($env:NO_CROSS -eq "true") {
 
   cargo build --release --target $target
   
-  cargo run --release --target $host_target
   cargo run --release --target $target
 }
 else {
@@ -24,7 +21,6 @@ else {
 
   cross build --release --target $target_to_use
 
-  cargo run --release --target $host_target
   cross run --release --target $target_to_use
 }
 
@@ -33,11 +29,9 @@ Remove-Item "$target.zip" -ErrorAction SilentlyContinue
 
 New-Item build -ItemType Directory
 
-if (!(Test-Path -Path docs)) {
-  mkdir docs
+if (Test-Path -Path docs) {
+  Copy-Item -Path docs -Destination build -Recurse
 }
-
-Copy-Item -Path docs -Destination build -Recurse
 
 Copy-Item -Path ".\target\$target\release\*.dll*" -Destination ".\build" -Recurse -ErrorAction SilentlyContinue
 Copy-Item -Path ".\target\$target\release\*.so*" -Destination ".\build" -Recurse -ErrorAction SilentlyContinue

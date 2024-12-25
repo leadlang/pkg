@@ -26,6 +26,11 @@ $metadata = @{
 
 mkdir dist -ErrorAction SilentlyContinue
 
+"Building Docs..."
+cargo run
+
+Copy-Item -Path "./docs" -Destination "./dist/docs" -Recurse
+
 foreach ($target in $toolchains) {
   try {
     Expand-Archive -Path "$target.zip" -DestinationPath "./dist/lib/$target" -Force 
