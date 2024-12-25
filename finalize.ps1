@@ -24,7 +24,7 @@ $metadata = @{
   platforms   = @()
 }
 
-mkdir dist -ErrorAction SilentlyContinue
+New-Item dist -ErrorAction SilentlyContinue
 
 "Building Docs..."
 cargo run --target $env:TARGET
