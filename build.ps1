@@ -43,4 +43,4 @@ Copy-Item -Path ".\target\$target\release\*.dll*" -Destination ".\build" -Recurs
 Copy-Item -Path ".\target\$target\release\*.so*" -Destination ".\build" -Recurse -ErrorAction SilentlyContinue
 Copy-Item -Path ".\target\$target\release\*.dylib*" -Destination ".\build" -Recurse -ErrorAction SilentlyContinue
 
-Compress-Archive -Path ./build/* -DestinationPath "$target.zip"
+Compress-Archive -Path ./build/* -DestinationPath "$target.zip" -Verbose
