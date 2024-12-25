@@ -27,7 +27,7 @@ $metadata = @{
 mkdir dist -ErrorAction SilentlyContinue
 
 "Building Docs..."
-cargo run
+cargo run --target $env:TARGET
 
 Copy-Item -Path "./docs" -Destination "./dist/docs" -Recurse
 

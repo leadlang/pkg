@@ -14,14 +14,20 @@ if ($env:NO_CROSS -eq "true") {
 
   cargo build --release --target $target
   
-  cargo run --release --target $target
+  try {
+    cargo run --release --target $target
+  }
+  catch {}
 }
 else {
   "Using cross"
 
   cross build --release --target $target_to_use
 
-  cross run --release --target $target_to_use
+  try {
+    cross run --release --target $target_to_use
+  }
+  catch {}
 }
 
 Remove-Item -Recurse -Force build -ErrorAction SilentlyContinue
