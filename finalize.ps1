@@ -22,6 +22,15 @@ $metadata = @{
   description = $description
   keywords    = $keywords
   platforms   = @()
+  type        = "dylib"
+  postinstall = $null
+  compilation = @{
+    src   = "src"
+    build = @{
+      unix    = "compile.sh"
+      windows = "compile.ps1"
+    }
+  }
 }
 
 New-Item dist -ItemType Directory -ErrorAction SilentlyContinue
@@ -30,6 +39,12 @@ New-Item dist -ItemType Directory -ErrorAction SilentlyContinue
 cargo run --target $env:TARGET
 
 Copy-Item -Path "./docs" -Destination "./dist/docs" -Recurse
+
+Copy-Item -Path "./src" -Destination "./dist/src/src" -Recurse -Force
+Copy-Item -Path ./* -Include *.toml -Destination "./dist/src/" -Force
+
+"" > dist/compile.sh
+"#! /usr/bin/env bash" > dist/compile.ps1
 
 foreach ($target in $toolchains) {
   try {
@@ -42,6 +57,6 @@ foreach ($target in $toolchains) {
   }
 }
 
-ConvertTo-Json $metadata | Out-File "dist/.pkgcache"
+ConvertTo-Json $metadata | Out-File "./dist/pkgcache"
 
 Compress-Archive -Path "./dist/*" -DestinationPath "leadpkg.zip" -Force
